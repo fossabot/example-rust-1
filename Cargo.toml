@@ -1,0 +1,9 @@
+[package]
+name = "pwcheck"
+version = "0.1.0"
+edition = "2021"
+description = "Small password strength and policy checker — Rust reference example for Coverage Tracker."
+
+[lib]
+name = "pwcheck"
+path = "src/lib.rs"

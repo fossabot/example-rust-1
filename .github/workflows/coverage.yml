@@ -1,0 +1,35 @@
+name: coverage
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  id-token: write   # OIDC → Worker
+  checks: write     # PR Check Run
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@nightly
+        with:
+          components: llvm-tools-preview
+
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-llvm-cov
+
+      - run: cargo llvm-cov --branch --lcov --output-path lcov.info
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - run: pip install lizard
+
+      - run: python -m lizard src --xml > lizard-report.xml
+
+      - uses: CoverageTracker/coverage-tracker/.github/actions/report@v0.2.0
+        with:
+          worker-url: https://demo.coveragetracker.dev
