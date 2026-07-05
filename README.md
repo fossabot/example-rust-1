@@ -11,7 +11,11 @@ a live, working reference, and to populate the
 [demo dashboard](https://demo.coveragetracker.dev) with real trend data.
 
 **This is a demo/marketing repo, not a test suite for Coverage Tracker
-itself.**
+itself.** `cargo-llvm-cov`'s stable-toolchain default emits line coverage
+only — branch data requires the nightly toolchain and an unstable `--branch`
+flag, which this repo deliberately doesn't take on — so unlike the other
+example repos, this one won't show a branch coverage metric on the
+dashboard (same situation as `example-go`).
 
 ## What's here
 
@@ -21,8 +25,10 @@ itself.**
   required character classes) plus human-readable descriptions.
 - `src/entropy.rs` — a rough Shannon-entropy estimate and qualitative rating.
 - `src/blocklist.rs` — a small common-password denylist shared by the above.
-- Each module has unit tests with a few deliberately uncovered
-  branches, so `branch_coverage < line_coverage` shows up on the dashboard.
+- Each module has unit tests, but each also has a real function or two left
+  deliberately untested (`Strength`'s "Excellent" tier, `require_special`
+  policy checks, most `Display`/description text), landing at ~77% line
+  coverage.
 - `.github/workflows/coverage.yml` — runs tests under
   [cargo-llvm-cov](https://github.com/taiki-e/cargo-llvm-cov), generates a
   [Lizard](https://github.com/terryyin/lizard) complexity report, then
@@ -32,12 +38,7 @@ itself.**
 ## Running locally
 
 ```sh
-rustup toolchain install nightly --component llvm-tools-preview
 cargo install cargo-llvm-cov
-cargo +nightly llvm-cov --branch --lcov --output-path lcov.info   # writes lcov.info
+cargo llvm-cov --lcov --output-path lcov.info   # writes lcov.info
 python -m lizard src --xml > lizard-report.xml
 ```
-
-Branch coverage in the LCOV output requires the **nightly** toolchain and
-the (unstable) `--branch` flag — `cargo-llvm-cov`'s stable-toolchain default
-command emits no `BRDA` branch records at all.
