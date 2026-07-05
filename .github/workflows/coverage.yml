@@ -28,6 +28,6 @@ jobs:
 
       - run: python -m lizard src --xml > lizard-report.xml
 
-      - uses: CoverageTracker/coverage-tracker/.github/actions/report@v0.2.0
+      - uses: CoverageTracker/coverage-tracker/.github/actions/report@v0.3.0
         with:
           worker-url: https://demo.coveragetracker.dev
