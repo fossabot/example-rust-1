@@ -2,6 +2,7 @@
 
 [![coverage badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fdemo.coveragetracker.dev%2Fapi%2Fbadge%2FCoverageTracker%2Fexample-rust%2Fcoverage.json)](https://demo.coveragetracker.dev/CoverageTracker/example-rust?metric=coverage)
 [![complexity badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fdemo.coveragetracker.dev%2Fapi%2Fbadge%2FCoverageTracker%2Fexample-rust%2Fcomplexity.json)](https://demo.coveragetracker.dev/CoverageTracker/example-rust?metric=complexity)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FCoverageTracker%2Fexample-rust.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FCoverageTracker%2Fexample-rust?ref=badge_shield)
 
 A small, idiomatic Rust password strength and policy library used as the
 Rust reference example for [Coverage Tracker](https://coveragetracker.dev).
@@ -42,3 +43,7 @@ cargo install cargo-llvm-cov
 cargo llvm-cov --lcov --output-path lcov.info   # writes lcov.info
 python -m lizard src --xml > lizard-report.xml
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FCoverageTracker%2Fexample-rust.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FCoverageTracker%2Fexample-rust?ref=badge_large)
